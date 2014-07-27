@@ -3,6 +3,11 @@
 require 'spec_helper'
 
 describe 'gethostbyname' do
+  it 'should exist' do
+    Puppet::Parser::Functions.function('gethostbyname')\
+      .should eq 'function_gethostbyname'
+  end
+
   it 'should run and return stubbed results' do
     Socket.stubs(:gethostbyname).returns([
       'slocalhost', ['localhost.localdomain'],
