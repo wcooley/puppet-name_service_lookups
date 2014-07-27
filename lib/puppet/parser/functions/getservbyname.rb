@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Puppet::Parser::Functions
   newfunction(:getservbyname, :type => :rvalue) do |args|
 

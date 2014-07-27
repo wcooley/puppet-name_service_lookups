@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 describe 'getservbyname' do
   context 'basic' do
     it '' do

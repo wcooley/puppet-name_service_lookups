@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Puppet::Parser::Functions
   newfunction(:gethostbyaddr, :type => :rvalue) do |args|
 
