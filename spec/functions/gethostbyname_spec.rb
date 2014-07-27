@@ -13,5 +13,11 @@ describe 'gethostbyname' do
     }
     expect(subject).to run.with_params('localhost').and_return(expected_result)
   end
+
+  # .invalid is reserved by RFC 2606
+  it 'should return undef on lookup failure' do
+  pending 'lookup failure handling' do
+    expect(subject).to run.with_params('example.invalid').and_return(:undef)
+  end
   end
 end
