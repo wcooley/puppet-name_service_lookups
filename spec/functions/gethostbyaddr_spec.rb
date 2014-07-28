@@ -23,8 +23,6 @@ describe 'gethostbyaddr' do
 
   # 192.0.2.0/24 is TEST-NET-1 per RFC 5737
   it 'should return undef on lookup failure' do
-  pending 'lookup failure handling' do
     expect(subject).to run.with_params('192.0.2.1').and_return(:undef)
-  end
   end
 end
