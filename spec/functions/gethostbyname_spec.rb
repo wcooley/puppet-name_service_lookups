@@ -25,4 +25,10 @@ describe 'gethostbyname' do
   it('should return undef on lookup failure', :slow => true) do
     expect(subject).to run.with_params('example.invalid').and_return(:undef)
   end
+
+  it 'should re-raise other exceptions' do
+    excp = [SocketError, 'toast is burned']
+    Socket.stubs(:gethostbyname).raises(*excp)
+    expect(subject).to run.with_params('localhost').and_raise_error(*excp)
+  end
 end

@@ -25,4 +25,10 @@ describe 'gethostbyaddr' do
   it('should return undef on lookup failure', :slow => true) do
     expect(subject).to run.with_params('192.0.2.1').and_return(:undef)
   end
+
+  it 'should re-raise other execptions' do
+    Socket.stubs(:gethostbyaddr).raises(SocketError, 'toast is burned')
+    expect(subject).to run.with_params('127.0.0.1')\
+      .and_raise_error(SocketError, 'toast is burned')
+  end
 end
