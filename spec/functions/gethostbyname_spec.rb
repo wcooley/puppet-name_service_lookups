@@ -26,6 +26,14 @@ describe 'gethostbyname' do
     expect(subject).to run.with_params('example.invalid').and_return(:undef)
   end
 
+  it 'should return undef on stubbed lookup failure' do
+    excp = [SocketError,
+            'getaddrinfo: nodename nor servname provided, or not known']
+    Socket.stubs(:gethostbyname).raises(*excp)
+    # Use 'localhost' to confirm that stub is working
+    expect(subject).to run.with_params('localhost').and_return(:undef)
+  end
+
   it 'should re-raise other exceptions' do
     excp = [SocketError, 'toast is burned']
     Socket.stubs(:gethostbyname).raises(*excp)

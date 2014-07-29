@@ -26,6 +26,11 @@ describe 'gethostbyaddr' do
     expect(subject).to run.with_params('192.0.2.1').and_return(:undef)
   end
 
+  it 'should return undef on stubbed lookup failure' do
+    Socket.stubs(:gethostbyaddr).raises(SocketError, 'host not found')
+    expect(subject).to run.with_params('127.0.0.1').and_return(:undef)
+  end
+
   it 'should re-raise other execptions' do
     Socket.stubs(:gethostbyaddr).raises(SocketError, 'toast is burned')
     expect(subject).to run.with_params('127.0.0.1')\
