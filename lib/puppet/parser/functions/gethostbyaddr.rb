@@ -1,10 +1,10 @@
 # encoding: UTF-8
 
+require 'ipaddr'
+require 'socket'
+
 module Puppet::Parser::Functions
   newfunction(:gethostbyaddr, :type => :rvalue) do |args|
-
-    require 'ipaddr'
-    require 'socket'
 
     address = IPAddr.new(args[0])
 
