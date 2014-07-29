@@ -42,6 +42,13 @@ describe 'getpwnam' do
     end
   end
 
+  it('should lookup root unstubbed', :slow => true) do
+      scope = PuppetlabsSpec::PuppetInternals.scope
+      result = scope.function_getpwnam(['root'])
+      expect(result['name']).to eq('root')
+      expect(result['uid']).to eq(0)
+  end
+
   it 'should return undef on lookup failure' do
     # Use 'root' to confirm that stubbed exception is working
     Etc.stubs(:getpwnam).raises(ArgumentError, "can't find user for root")
