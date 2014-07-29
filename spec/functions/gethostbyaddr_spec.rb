@@ -22,7 +22,7 @@ describe 'gethostbyaddr' do
   end
 
   # 192.0.2.0/24 is TEST-NET-1 per RFC 5737
-  it 'should return undef on lookup failure' do
+  it('should return undef on lookup failure', :slow => true) do
     expect(subject).to run.with_params('192.0.2.1').and_return(:undef)
   end
 end

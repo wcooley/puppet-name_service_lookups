@@ -22,7 +22,7 @@ describe 'gethostbyname' do
   end
 
   # .invalid is reserved by RFC 2606
-  it 'should return undef on lookup failure' do
+  it('should return undef on lookup failure', :slow => true) do
     expect(subject).to run.with_params('example.invalid').and_return(:undef)
   end
 end
