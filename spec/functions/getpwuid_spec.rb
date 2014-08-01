@@ -28,17 +28,32 @@ describe 'getpwuid' do
       Etc.stubs(:getpwuid).returns(pwent_struct)
     end
 
-    # The failure message is buggy in rspec-puppet 1.0.1
-    # and not as readable as the default formatter when it does work
-    it 'with rspec-puppet' do
-      should(run.with_params(501).and_return(pwent_hash))
+    context 'uid as Integer' do
+      # The failure message is buggy in rspec-puppet 1.0.1
+      # and not as readable as the default formatter when it does work
+      it 'with rspec-puppet' do
+        should(run.with_params(501).and_return(pwent_hash))
+      end
+
+      # Ruby 1.8.7 barfs with
+      #   uninitialized constant RSpec::Expectations::Differ::Encoding
+      it('using Puppet function directly', :if => RUBY_VERSION >= '1.9.0') do
+        scope = PuppetlabsSpec::PuppetInternals.scope
+        expect(scope.function_getpwuid([501])).to eq(pwent_hash)
+      end
     end
 
-    # Ruby 1.8.7 barfs with
-    #   uninitialized constant RSpec::Expectations::Differ::Encoding
-    it('using Puppet function directly', :if => RUBY_VERSION >= '1.9.0') do
-      scope = PuppetlabsSpec::PuppetInternals.scope
-      expect(scope.function_getpwuid([501])).to eq(pwent_hash)
+    context 'uid as String' do
+      it 'with rspec-puppet' do
+        should(run.with_params('501').and_return(pwent_hash))
+      end
+
+      # Ruby 1.8.7 barfs with
+      #   uninitialized constant RSpec::Expectations::Differ::Encoding
+      it('using Puppet function directly', :if => RUBY_VERSION >= '1.9.0') do
+        scope = PuppetlabsSpec::PuppetInternals.scope
+        expect(scope.function_getpwuid(['501'])).to eq(pwent_hash)
+      end
     end
   end
 
