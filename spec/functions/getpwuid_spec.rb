@@ -75,4 +75,21 @@ describe 'getpwuid' do
     expect(subject).to run.with_params(0)\
       .and_raise_error(ArgumentError, 'not the right argument')
   end
+
+  # Ruby "helpfully" returns 0 when 'to_i' cannot convert to Integer
+  # so we test to ensure we're converting it correctly.
+  # Also, note that *ArgumentError* is raised here, but in the example using a
+  # manifest it is a *Puppet::Error*.
+  it 'should raise error when given non-integers w/rspec-puppet' do
+     expect(subject).to run.with_params('not-an-integer')\
+      .and_raise_error(ArgumentError, /invalid value for Integer/)
+  end
+
+  it 'should raise error when given non-integers' do
+    scope = PuppetlabsSpec::PuppetInternals.scope
+    expect {
+      scope.function_getpwuid(['not-an-integer'])
+    }.to(raise_error(ArgumentError, /invalid value for Integer/))
+  end
+
 end
