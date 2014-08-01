@@ -5,7 +5,7 @@ require 'etc'
 module Puppet::Parser::Functions
   newfunction(:getpwuid, :type => :rvalue) do |args|
 
-    user = args[0]
+    user = Integer(args[0])
 
     begin
       pwent = Etc.getpwuid(user)
