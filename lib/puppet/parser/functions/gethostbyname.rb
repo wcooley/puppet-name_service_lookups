@@ -14,7 +14,7 @@ module Puppet::Parser::Functions
       result['address'] = IPAddr.new_ntoh(hostent[3]).to_s
 
     rescue SocketError => se
-      if se.to_s =~ %r{nodename nor servname provided, or not known}
+      if se.to_s =~ %r{not known}
         result = :undef
       else
         raise se
