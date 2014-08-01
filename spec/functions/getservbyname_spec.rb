@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'spec_helper'
+
 describe 'getservbyname' do
   context 'basic' do
     it '' do
