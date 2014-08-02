@@ -7,10 +7,10 @@ script: 'rake spec'
 env:
     - PUPPET_VERSION="~> 2.7.0"
     - PUPPET_VERSION="3"
+gemfile: .gemfile
 matrix:
     exclude:
         - rvm: 2.1.2
         - env: PUPPET_VERSION="~> 2.7.0"
-gemfile: .gemfile
 notifications:
     email: false
