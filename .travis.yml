@@ -11,6 +11,6 @@ gemfile: .gemfile
 matrix:
     exclude:
         - rvm: 2.1.2
-        - env: PUPPET_VERSION="~> 2.7.0"
+          env: PUPPET_VERSION="~> 2.7.0"
 notifications:
     email: false
