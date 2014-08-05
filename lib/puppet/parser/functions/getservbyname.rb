@@ -1,9 +1,9 @@
 # encoding: UTF-8
 
+require 'socket'
+
 module Puppet::Parser::Functions
   newfunction(:getservbyname, :type => :rvalue) do |args|
-
-    require 'socket'
 
     serv = args[0]
     proto = args[1]
