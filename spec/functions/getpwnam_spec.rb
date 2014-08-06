@@ -51,12 +51,14 @@ describe 'getpwnam' do
 
   it 'should return undef on lookup failure' do
     # Use 'root' to confirm that stubbed exception is working
-    Etc.stubs(:getpwnam).raises(ArgumentError, "can't find user for root")
+    Etc.expects(:getpwnam).with('root')\
+      .raises(ArgumentError, "can't find user for root")
     expect(subject).to run.with_params('root').and_return(:undef)
   end
 
   it 'should re-raise other exceptions' do
-    Etc.stubs(:getpwnam).raises(ArgumentError, 'not the right argument')
+    Etc.expects(:getpwnam).with('root')\
+      .raises(ArgumentError, 'not the right argument')
     expect(subject).to run.with_params('root')\
       .and_raise_error(ArgumentError, 'not the right argument')
   end

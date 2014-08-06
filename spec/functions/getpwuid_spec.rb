@@ -66,12 +66,14 @@ describe 'getpwuid' do
 
   it 'should return undef on lookup failure' do
     # Use 'root' to confirm that stubbed exception is working
-    Etc.stubs(:getpwuid).raises(ArgumentError, "can't find user for root")
+    Etc.expects(:getpwuid).with(0)\
+      .raises(ArgumentError, "can't find user for root")
     expect(subject).to run.with_params(0).and_return(:undef)
   end
 
   it 'should re-raise other exceptions' do
-    Etc.stubs(:getpwuid).raises(ArgumentError, 'not the right argument')
+    Etc.expects(:getpwuid).with(0)\
+      .raises(ArgumentError, 'not the right argument')
     expect(subject).to run.with_params(0)\
       .and_raise_error(ArgumentError, 'not the right argument')
   end

@@ -9,7 +9,7 @@ describe 'gethostbyaddr' do
   end
 
   it 'should run and return stubbed results' do
-    Socket.stubs(:gethostbyaddr).returns([
+    Socket.expects(:gethostbyaddr).with("\x7F\x00\x00\x02").returns([
       'slocalhost', ['localhost.localdomain'],
       2, [127, 0, 0, 2].pack('CCCC')
     ])
@@ -27,12 +27,14 @@ describe 'gethostbyaddr' do
   end
 
   it 'should return undef on stubbed lookup failure' do
-    Socket.stubs(:gethostbyaddr).raises(SocketError, 'host not found')
+    Socket.expects(:gethostbyaddr).with("\x7F\x00\x00\x01")\
+      .raises(SocketError, 'host not found')
     expect(subject).to run.with_params('127.0.0.1').and_return(:undef)
   end
 
   it 'should re-raise other execptions' do
-    Socket.stubs(:gethostbyaddr).raises(SocketError, 'toast is burned')
+    Socket.expects(:gethostbyaddr).with("\x7F\x00\x00\x01")\
+      .raises(SocketError, 'toast is burned')
     expect(subject).to run.with_params('127.0.0.1')\
       .and_raise_error(SocketError, 'toast is burned')
   end
