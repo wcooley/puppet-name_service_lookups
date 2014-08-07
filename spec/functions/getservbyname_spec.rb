@@ -14,7 +14,11 @@ describe 'getservbyname' do
       Socket.stubs(:getservbyname).returns(23)
       should run.with_params('telnet').and_return(23)
     end
-    it 'should return undef on lookup failure'
+    it 'should return undef on lookup failure' do
+      Socket.expects(:getservbyname).with('smellnet')\
+       .raises(SocketError, 'no such service smellnet/tcp')
+      expect(subject).to run.with_params('smellnet').and_return(:undef)
+    end
     it 'should re-raise exceptions other than lookup failure'
   end
 
