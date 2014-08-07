@@ -8,7 +8,7 @@ describe 'gethostbyaddr' do
       .should eq 'function_gethostbyaddr'
   end
 
-  it 'should run and return stubbed results' do
+  it 'should return expected result with valid input' do
     Socket.expects(:gethostbyaddr).with("\x7F\x00\x00\x02").returns([
       'slocalhost', ['localhost.localdomain'],
       2, [127, 0, 0, 2].pack('CCCC')

@@ -9,7 +9,7 @@ describe 'getpwuid' do
       .should eq 'function_getpwuid'
   end
 
-  context 'should run and return stubbed results' do
+  context 'should return expected result with valid input' do
     pwent_ars = [
         ['name', 'jensenb'],
         ['passwd', '********'],

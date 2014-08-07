@@ -10,14 +10,14 @@ describe 'getservbyname' do
   end
 
   context 'without protocol' do
-    it 'should get "23" for "telnet"' do
+    it 'should return expected result with valid input' do
       Socket.stubs(:getservbyname).returns(23)
       should run.with_params('telnet').and_return(23)
     end
   end
 
   context 'with protocol' do
-    it 'should get "514" for "syslog,udp"' do
+    it 'should return expected result with valid input' do
       Socket.stubs(:getservbyname).returns(514)
       should run.with_params('syslog', 'udp').and_return(514)
     end

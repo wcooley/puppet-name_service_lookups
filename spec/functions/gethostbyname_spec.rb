@@ -8,7 +8,7 @@ describe 'gethostbyname' do
       .should eq 'function_gethostbyname'
   end
 
-  it 'should run and return stubbed results' do
+  it 'should return expected result with valid input' do
     Socket.expects(:gethostbyname).with('localhost').returns([
       'slocalhost', ['localhost.localdomain'],
       2, [127, 0, 0, 2].pack('CCCC')
