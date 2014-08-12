@@ -9,7 +9,7 @@ describe 'getpwnam' do
       .should eq 'function_getpwnam'
   end
 
-  context 'should return expected result with valid input' do
+  context 'should run and return stubbed results' do
     pwent_ars = [
         ['name', 'jensenb'],
         ['passwd', '********'],
