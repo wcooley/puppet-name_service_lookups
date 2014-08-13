@@ -19,7 +19,11 @@ describe 'getservbyname' do
        .raises(SocketError, 'no such service smellnet/tcp')
       expect(subject).to run.with_params('smellnet').and_return(:undef)
     end
-    it 'should re-raise exceptions other than lookup failure'
+    it 'should re-raise exceptions other than lookup failure' do
+      Socket.stubs(:getservbyname).raises(SocketError, 'something bad happened')
+      expect(subject).to run.with_params('foo')\
+        .and_raise_error(SocketError, 'something bad happened')
+    end
   end
 
   context 'with protocol' do
@@ -27,7 +31,18 @@ describe 'getservbyname' do
       Socket.stubs(:getservbyname).returns(514)
       should run.with_params('syslog', 'udp').and_return(514)
     end
-    it 'should get undef for unknown service'
-    it 'should re-raise exceptions other than lookup failure'
+
+    it 'should get undef for unknown service' do
+      Socket.expects(:getservbyname).with('smellnet', 'ddp')\
+       .raises(SocketError, 'no such service smellnet/ddp')
+
+      expect(subject).to run.with_params('smellnet', 'ddp').and_return(:undef)
+    end
+
+    it 'should re-raise exceptions other than lookup failure' do
+      Socket.expects(:getservbyname).raises(SocketError, 'something bad happened')
+      expect(subject).to run.with_params('smellnet', 'ddp')\
+        .and_raise_error(SocketError, 'something bad happened')
+    end
   end
 end
