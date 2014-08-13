@@ -11,7 +11,7 @@ describe 'getservbyname' do
 
   context 'without protocol' do
     it 'should return expected result with valid input' do
-      Socket.stubs(:getservbyname).returns(23)
+      Socket.expects(:getservbyname).returns(23)
       should run.with_params('telnet').and_return(23)
     end
     it 'should return undef on lookup failure' do
@@ -20,7 +20,7 @@ describe 'getservbyname' do
       expect(subject).to run.with_params('smellnet').and_return(:undef)
     end
     it 'should re-raise exceptions other than lookup failure' do
-      Socket.stubs(:getservbyname).raises(SocketError, 'something bad happened')
+      Socket.expects(:getservbyname).raises(SocketError, 'something bad happened')
       expect(subject).to run.with_params('foo')\
         .and_raise_error(SocketError, 'something bad happened')
     end
@@ -28,7 +28,7 @@ describe 'getservbyname' do
 
   context 'with protocol' do
     it 'should return expected result with valid input' do
-      Socket.stubs(:getservbyname).returns(514)
+      Socket.expects(:getservbyname).returns(514)
       should run.with_params('syslog', 'udp').and_return(514)
     end
 
