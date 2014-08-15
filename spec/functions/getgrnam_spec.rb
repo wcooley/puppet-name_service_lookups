@@ -22,7 +22,7 @@ describe 'getgrnam' do
 
     Etc.expects(:getgrnam).with('jensenb').returns(grent_struct)
 
-    scope = PuppetlabsSpec::PuppetInternals.scope
+    #scope = PuppetlabsSpec::PuppetInternals.scope
     #expect(scope.function_getgrnam(['jensenb'])).to eq(grent_hash)
     expect(subject).to run.with_params('jensenb').and_return(grent_hash)
   end
