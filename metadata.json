@@ -1,13 +1,14 @@
 {
   "name": "wcooley-name_service_lookups",
   "version": "0.1.0",
-  "summary": "Puppet functions for system database lookups.",
   "author": "Wil Cooley <wcooley@nakedape.cc>",
+  "summary": "Puppet functions for system database lookups.",
   "license": "Apache-2.0",
   "source": "https://github.com/wcooley/puppet-name_service_lookups.git",
   "project_page": "https://github.com/wcooley/puppet-name_service_lookups",
   "issues_url": "https://github.com/wcooley/puppet-name_service_lookups/issues",
   "tags": [
+    "etc"
     "getgrgid",
     "getgrnam",
     "gethostbyaddr",
@@ -16,33 +17,55 @@
     "getpwuid",
     "getservbyname",
     "getservbyport",
+    "lookup",
     "name service",
-    "lookup"
-    ]
+    "socket",
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
-      "operatingsystemrelease": [ "5", "6", "7"]
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystemrelease": [ "5", "6", "7"]
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
       "operatingsystem": "Scientific",
-      "operatingsystemrelease": ["5", "6", "7"]
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
     },
     {
       "operatingsystem": "SLES",
-      "operatingsystemrelease": ["11 SP1"]
+      "operatingsystemrelease": [
+        "11 SP1"
+      ]
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": ["6", "7"]
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": ["10.04", "12.04", "14.04"]
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
     }
   ],
   "requirements": [
@@ -52,8 +75,10 @@
     },
     {
       "name": "puppet",
-      "version_requirement": ">= 2.7 < 4.x"
+      "version_requirement": ">= 2.7 < 4"
     }
   ],
-  "dependencies": []
+  "dependencies": [
+
+  ]
 }
