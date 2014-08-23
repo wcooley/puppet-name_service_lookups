@@ -243,7 +243,7 @@ Would return:
 Author
 -------
 
-Wil Cooley <wcooley(at)nakedape.cc>
+Wil Cooley wcooley(at)nakedape.cc
 
 Support
 -------
