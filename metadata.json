@@ -8,7 +8,7 @@
   "project_page": "https://github.com/wcooley/puppet-name_service_lookups",
   "issues_url": "https://github.com/wcooley/puppet-name_service_lookups/issues",
   "tags": [
-    "etc"
+    "etc",
     "getgrgid",
     "getgrnam",
     "gethostbyaddr",
@@ -19,7 +19,7 @@
     "getservbyport",
     "lookup",
     "name service",
-    "socket",
+    "socket"
   ],
   "operatingsystem_support": [
     {
